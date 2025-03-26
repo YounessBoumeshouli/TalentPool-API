@@ -1,7 +1,10 @@
 <?php
 
 return [
-
+    'api' => [
+        'driver' => 'jwt',
+        'provider' => 'users',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults

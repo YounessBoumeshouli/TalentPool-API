@@ -5,6 +5,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Announcement;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class AnnouncementTest extends TestCase
 {
@@ -12,8 +13,13 @@ class AnnouncementTest extends TestCase
 
     public function test_recruiter_can_create_announcement()
     {
-        $recruiter = User::factory()->create(['role' => 'recruiter']);
-        $token = auth()->login($recruiter);
+        // Créer un recruteur et générer un token
+        $recruiter = User::factory()->create([
+            'role' => 'recruiter'
+        ]);
+
+        // Connecter l'utilisateur et obtenir le token
+        $token = JWTAuth::fromUser($recruiter);
 
         $announcementData = [
             'title' => 'Software Engineer',
@@ -23,6 +29,7 @@ class AnnouncementTest extends TestCase
             'status' => 'active'
         ];
 
+        // Faire la requête avec le token
         $response = $this->withHeader('Authorization', "Bearer $token")
             ->postJson('/api/announcements', $announcementData);
 
@@ -32,8 +39,13 @@ class AnnouncementTest extends TestCase
 
     public function test_candidate_cannot_create_announcement()
     {
-        $candidate = User::factory()->create(['role' => 'candidate']);
-        $token = auth()->login($candidate);
+        // Créer un candidat et générer un token
+        $candidate = User::factory()->create([
+            'role' => 'candidate'
+        ]);
+
+        // Connecter l'utilisateur et obtenir le token
+        $token = JWTAuth::fromUser($candidate);
 
         $announcementData = [
             'title' => 'Software Engineer',
@@ -43,6 +55,7 @@ class AnnouncementTest extends TestCase
             'status' => 'active'
         ];
 
+        // Faire la requête avec le token
         $response = $this->withHeader('Authorization', "Bearer $token")
             ->postJson('/api/announcements', $announcementData);
 

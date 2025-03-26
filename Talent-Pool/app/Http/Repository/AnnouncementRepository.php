@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositories;
+namespace App\Http\Repository;
 
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Auth;

@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Services\AnnouncementService;
-use App\Repositories\AnnouncementRepository;
+use App\Http\Services\AnnouncementService;
+use App\Http\Repository\AnnouncementRepository;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -14,7 +14,6 @@ class AnnouncementController extends Controller
         AnnouncementService $announcementService,
         AnnouncementRepository $announcementRepository
     ) {
-        $this->middleware('jwt.auth');
         $this->announcementService = $announcementService;
         $this->announcementRepository = $announcementRepository;
     }

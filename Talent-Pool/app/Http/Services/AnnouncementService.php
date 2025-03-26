@@ -1,7 +1,7 @@
 <?php
-namespace App\Services;
+namespace App\Http\Services;
 
-use App\Repositories\AnnouncementRepository;
+use App\Http\Repository\AnnouncementRepository;
 use Illuminate\Support\Facades\Validator;
 
 class AnnouncementService
