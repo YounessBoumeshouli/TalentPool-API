@@ -21,7 +21,7 @@ Route::middleware(['jwt.auth'])->group(function () {
         Route::get('/{id}', [AnnouncementController::class, 'show']);
 
         Route::post('/', [AnnouncementController::class, 'store'])
-            ->middleware(['jwt.auth','role:candidate']);
+            ->middleware(['jwt.auth','role:recruiter']);
 
         Route::put('/{id}', [AnnouncementController::class, 'update'])
             ->middleware('role:recruiter');
@@ -43,8 +43,8 @@ Route::middleware(['jwt.auth'])->group(function () {
             ->middleware('role:candidate');
 
 
-        Route::post('/', [ApplicationController::class, 'show'])
-            ->middleware('role:recruiter');
+        Route::post('/', [ApplicationController::class, 'store'])
+            ->middleware('role:candidate');
 
         Route::delete('/{id}', [ApplicationController::class, 'delete'])
             ->middleware("role:admin");
