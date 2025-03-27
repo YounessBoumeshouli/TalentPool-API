@@ -37,8 +37,8 @@ class ApplicationRepository
         return true;
     }
 
-    public function getRecruiterApplications()
+    public function getCandidateApplications()
     {
-        return Application::where('recruiter_id', Auth::id())->get();
+        return Application::where('candidate_id', Auth::id())->get();
     }
 }

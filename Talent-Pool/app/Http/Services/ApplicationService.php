@@ -11,7 +11,7 @@ class ApplicationService
 
     public function __construct(ApplicationRepository $applicationRepository)
     {
-        $this->$applicationRepository = $applicationRepository;
+        $this->applicationRepository = $applicationRepository;
     }
 
     public function validateApplicationData(array $data)
